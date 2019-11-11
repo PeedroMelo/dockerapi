@@ -1,12 +1,14 @@
 const express = require("express");
 
-const UserController = require("./controllers/UserController");
-const SpotController = require("./controllers/SpotController");
+const OrderController = require("./controllers/OrderController");
+const ProductController = require("./controllers/ProductController");
 
 const routes = express.Router();
 
-routes.get('/users', UserController.index);
+routes.get('/order', OrderController.findAll);
+routes.get('/order/:id', OrderController.find);
+routes.post('/order', OrderController.create);
 
-routes.get('/spots', SpotController.index);
+routes.post('/product', ProductController.store);
 
 module.exports = routes;
