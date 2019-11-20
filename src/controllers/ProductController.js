@@ -2,10 +2,15 @@ const Product = require("../models/Product")
 
 module.exports = {
 
-    store(req, res) {
+    async findAll(req, res) {
+        const product = await Product.find();
+        return res.status(200).json(product);
+    },
+
+    async store(req, res) {
         const { description, value } = req.body;
 
-        const product = Product.create({
+        const product = await Product.create({
            description : description,
            value       : value
         });

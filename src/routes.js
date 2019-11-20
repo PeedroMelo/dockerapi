@@ -9,6 +9,7 @@ routes.get('/order', OrderController.findAll);
 routes.get('/order/:id', OrderController.find);
 routes.post('/order', OrderController.create);
 
+routes.get('/product', ProductController.findAll);
 routes.post('/product', ProductController.store);
 
 module.exports = routes;

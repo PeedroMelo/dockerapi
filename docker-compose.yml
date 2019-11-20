@@ -3,8 +3,25 @@ version: "3"
 services:
   nodejs:
     build: .
+    command: npm run start
     ports:
       - "3000:3000"
-    command: npm run dev 
+    volumes:
+      - .:/usr/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nodejs.rule=Host(`localhost`)"
 
-    # adicionar configurações do mongoDB
+  reverse-proxy:
+    image: "traefik:v2.0.0-rc3"
+    container_name: "traefik"
+    command: 
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"

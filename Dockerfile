@@ -2,7 +2,7 @@
 FROM node:10
 
 # WORKDIR - app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 # COPY - basically it will add all the dependencies found in the .json files to the docker image.
 # it will work with other file types too, like README.md, for example.
@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 3000
 
 # CMD - the command that will be run our application
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

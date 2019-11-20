@@ -13,9 +13,11 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(port, function() {
-    console.log(`Server running on port ${port}`);    
+    console.log(`Server running on port ${port}`);
 
     connectDb().then(() => {
         console.log('MongoDB connected');
+    }).catch((error) => {
+        console.log(error);        
     });
 });
