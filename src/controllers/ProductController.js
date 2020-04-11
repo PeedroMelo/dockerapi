@@ -7,6 +7,12 @@ module.exports = {
         return res.status(200).json(product);
     },
 
+    async find(req, res) {
+        const { id } = req.params;
+        const product = await Product.findById(id);
+        return res.status(200).json(product);
+    },
+
     async store(req, res) {
         const { description, value } = req.body;
 
